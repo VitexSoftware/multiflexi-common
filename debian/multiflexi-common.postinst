@@ -12,28 +12,36 @@ configure)
 
     [ -f "/etc/default/multiflexi" ] && . /etc/default/multiflexi
 
+    # Ensure multiflexi group exists
+    if ! getent group multiflexi > /dev/null 2>&1; then
+        addgroup --system multiflexi
+    fi
+
+    # Add www-data to multiflexi group so the web app can access shared resources
+    if ! id -nG www-data 2>/dev/null | grep -qw multiflexi; then
+        adduser www-data multiflexi
+    fi
+
     # Ensure log directory exists with proper permissions
     if [ ! -d "/var/log/multiflexi" ]; then
         mkdir -p /var/log/multiflexi
     fi
-    chown www-data:www-data /var/log/multiflexi
-    chmod 755 /var/log/multiflexi
+    chown www-data:multiflexi /var/log/multiflexi
+    chmod 775 /var/log/multiflexi
 
     # Create log file with proper permissions if it does not exist
     LOG_FILE="/var/log/multiflexi/multiflexi.log"
     if [ ! -f "$LOG_FILE" ]; then
         touch "$LOG_FILE"
     fi
-    chown www-data:www-data "$LOG_FILE"
-    chmod 640 "$LOG_FILE"
+    chown www-data:multiflexi "$LOG_FILE"
+    chmod 660 "$LOG_FILE"
 
     # Ensure /var/lib/multiflexi exists with proper permissions
-    if [ ! -d "/var/lib/multiflexi" ]; then
-        mkdir -p /var/lib/multiflexi/tmp
-    fi
-    chown multiflexi:www-data /var/lib/multiflexi
+    mkdir -p /var/lib/multiflexi/tmp
+    chown multiflexi:multiflexi /var/lib/multiflexi
     chmod 755 /var/lib/multiflexi
-    chown multiflexi:www-data /var/lib/multiflexi/tmp
+    chown multiflexi:multiflexi /var/lib/multiflexi/tmp
     chmod 775 /var/lib/multiflexi/tmp
 
     # Ensure /etc/multiflexi directory exists
@@ -45,9 +53,9 @@ configure)
     ENV_FILE="/etc/multiflexi/multiflexi.env"
     if [ ! -f "$ENV_FILE" ]; then
         touch "$ENV_FILE"
-        chmod 640 "$ENV_FILE"
-        chown root:www-data "$ENV_FILE"
     fi
+    chmod 640 "$ENV_FILE"
+    chown root:multiflexi "$ENV_FILE"
     
     # Generate encryption master key if not already configured
     if ! grep -q "^ENCRYPTION_MASTER_KEY=" "$ENV_FILE" 2>/dev/null; then
