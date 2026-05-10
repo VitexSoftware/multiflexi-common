@@ -21,7 +21,7 @@ Multi-Arch: foreign
 Depends: ${misc:Depends}
  locales-all,
  php-vitexsoftware-multiflexi-core,
- anacron, adduser (>= 3.11),
+ adduser (>= 3.11),
  php-cli,
 Replaces: multiflexi (<< 2.0.0)
 Suggests: multiflexi-cli, multiflexi-web
