@@ -2,7 +2,7 @@ Source: multiflexi
 Section: web
 Priority: optional
 Maintainer: "Vítězslav Dvořák" <info@vitexsoftware.cz>
-Build-Depends: debhelper-compat (= 13), jq, moreutils, pkg-php-tools, php-yaml, php-intl, php-simplexml, python3-sphinx, python3-shibuya-sphinx-theme
+Build-Depends: debhelper-compat (= 13), jq, moreutils, pkg-php-tools, php-yaml, php-intl, php-simplexml
 Standards-Version: 4.1.4
 Homepage: https://github.com/VitexSoftware/multiflexi-common
 
@@ -23,7 +23,6 @@ Depends: ${misc:Depends}
  php-vitexsoftware-multiflexi-core,
  adduser (>= 3.11),
  php-cli,
-Replaces: multiflexi (<< 2.0.0)
 Suggests: multiflexi-cli, multiflexi-web
 Architecture: all
 Description: shared multiflexi configuration
