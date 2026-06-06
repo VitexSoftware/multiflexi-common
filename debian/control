@@ -10,7 +10,7 @@ Package: multiflexi
 Multi-Arch: foreign
 Depends: ${misc:Depends},
  multiflexi-common,
-Recommends: multiflexi-scheduler, multiflexi-web, muliflexi-executor
+Recommends: multiflexi-scheduler, multiflexi-web|multiflexi-web5, muliflexi-executor
 Architecture: all
 Description: Run various tools on top of not even AbraFlexi and Stormware Pohoda
  Define server, customers and its companies. Then specify
@@ -23,7 +23,7 @@ Depends: ${misc:Depends}
  php-vitexsoftware-multiflexi-core,
  adduser (>= 3.11),
  php-cli,
-Suggests: multiflexi-cli, multiflexi-web
+Suggests: multiflexi-cli, multiflexi-web|multiflexi-web5
 Architecture: all
 Description: shared multiflexi configuration
  Create MultiFlexi user and configuration
