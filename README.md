@@ -20,7 +20,8 @@ The MultiFlexi project is divided into several specialized subprojects:
 - [multiflexi-server](https://github.com/VitexSoftware/multiflexi-server) - REST API backend (PHP Slim 4)
 - [multiflexi-api](https://github.com/VitexSoftware/multiflexi-api) - OpenAPI specification and server code generator
 - [MultiFlexi](https://github.com/VitexSoftware/MultiFlexi) - Main web interface (dashboard, company and job management)
-- [multiflexi-web](https://github.com/VitexSoftware/multiflexi-web) - Web assets and frontend package
+- [multiflexi-web](https://github.com/VitexSoftware/multiflexi-web) - (old bootstrap4) Web assets and frontend package
+- [multiflexi-web5](https://github.com/VitexSoftware/multiflexi-web5) - (new bootstrap5) Web assets and frontend package 
 - [multiflexi-ui](https://github.com/VitexSoftware/multiflexi-ui) - React/TypeScript/Vite UI components
 - [multiflexi-cli](https://github.com/VitexSoftware/multiflexi-cli) - Command-line interface for managing apps, companies, credentials, and jobs
 
