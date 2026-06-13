@@ -1,3 +1,14 @@
+multiflexi (2.3.2) UNRELEASED; urgency=medium
+
+  * debian: ship the missing cz.vitexsoftware.multiflexi.metainfo.xml referenced
+    by multiflexi.install. Its absence made dh_install abort ("missing files"),
+    failing the build on every distro since #33 and blocking the apt publish for
+    the whole stack (incl. the multiflexi user/group preinst that web5 needs).
+  * Version bumped above the published 2.3.1.x so the rebuilt package (with the
+    'multiflexi' user-creating preinst) supersedes it on upgrade.
+
+ -- Vítězslav Dvořák <info@vitexsoftware.cz>  Sat, 13 Jun 2026 12:00:00 +0200
+
 multiflexi (2.3.0) UNRELEASED; urgency=medium
 
   * Event-driven job triggering UI
