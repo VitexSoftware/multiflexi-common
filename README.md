@@ -13,7 +13,7 @@ The MultiFlexi project is divided into several specialized subprojects:
 ## Member Projects
 
 ### Core Ecosystem
-- [multiflexi-common](https://github.com/VitexSoftware/multiflexi-common) - Common documentation, shared assets, Zabbix LLD scripts (this repository)
+- [multiflexi-common](https://github.com/VitexSoftware/multiflexi-common) - Common documentation and shared assets (this repository)
 - [php-vitexsoftware-multiflexi-core](https://github.com/VitexSoftware/php-vitexsoftware-multiflexi-core) - Central library with core business logic (ORM, Job, RunTemplate, Credential, Artifact system)
 - [multiflexi-database](https://github.com/VitexSoftware/multiflexi-database) - Database schema and Phinx migrations (MySQL, PostgreSQL, SQLite)
 - [multiflexi-database-connection](https://github.com/VitexSoftware/multiflexi-database-connection) - PDO database connection credential support

@@ -4,7 +4,7 @@
 
 ## 🗂️ Repository Purpose
 
-This repository (`multiflexi-common`) contains **shared assets, common documentation, and Zabbix LLD scripts** for the MultiFlexi project ecosystem. It does **not** contain PHP application code.
+This repository (`multiflexi-common`) contains **shared assets and common documentation** for the MultiFlexi project ecosystem. It does **not** contain PHP application code.
 
 For related code, see:
 
@@ -14,6 +14,7 @@ For related code, see:
 | [multiflexi-web](https://github.com/VitexSoftware/multiflexi-web) | Web interface / UI code |
 | [php-vitexsoftware-multiflexi-core](https://github.com/VitexSoftware/php-vitexsoftware-multiflexi-core) | Core PHP library |
 | [multiflexi-server](https://github.com/VitexSoftware/multiflexi-server) | REST API backend |
+| [multiflexi-zabbix](https://github.com/VitexSoftware/multiflexi-zabbix) | Zabbix LLD scripts and monitoring templates |
 
 > Do **not** add end-user documentation or web UI code to this repository — they have dedicated homes above.
 
@@ -25,19 +26,6 @@ For related code, see:
 - **Commit messages**: Use imperative mood and keep concise (e.g., "Fix Zabbix LLD key", "Add company discovery script")
 
 ## 📁 Repository Contents
-
-### `bin/`
-CLI scripts for Zabbix LLD discovery:
-- `multiflexi-zabbix-lld` — general LLD
-- `multiflexi-zabbix-lld-actions` — action discovery
-- `multiflexi-zabbix-lld-company` — company discovery
-- `multiflexi-zabbix-lld-tasks` — task discovery
-
-### `lib/`
-PHP helper scripts backing the `bin/` LLD tools. These are **standalone scripts**, not part of the web application.
-
-### `zabbix/`
-Zabbix template XML/YAML files for import.
 
 ### `doc/` / `docs/`
 Internal technical documentation and OpenAPI specs. User-facing documentation belongs in [multiflexi-doc-en](https://github.com/VitexSoftware/multiflexi-doc-en).

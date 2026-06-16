@@ -8,7 +8,7 @@ MultiFlexi is a comprehensive PHP-based task scheduling and automation framework
 
 ### Core Components
 
-- **multiflexi-common**: (This repository) Documentation, common assets, and Zabbix integration
+- **multiflexi-common**: (This repository) Documentation and common assets
 - **php-vitexsoftware-multiflexi-core**: (External) The central library containing core functionality
 - **multiflexi-web**: (External) Bootstrap 4 web interface with real-time monitoring
 - **multiflexi-cli**: (External) Command-line interface for management operations
@@ -16,16 +16,13 @@ MultiFlexi is a comprehensive PHP-based task scheduling and automation framework
 - **multiflexi-executor**: (External) Systemd service daemon that continuously executes scheduled jobs
 - **multiflexi-database**: (External) Database schema and migration management
 - **multiflexi-server**: (External) Optional server component for advanced deployments
-- **multiflexi-zabbix**: (External) Zabbix integration components (moved from core)
+- **multiflexi-zabbix**: (External) Zabbix integration components (moved from core, including LLD scripts formerly in multiflexi-common)
 - **ansible-collection**: (External) Ansible automation collection for infrastructure deployment
 
 ### Directory Structure
 
-- `bin/`: Common executables and Zabbix LLD launchers
 - `debian/`: Debian package build configuration for documentation and common assets
 - `docs/`: Sphinx documentation source
-- `lib/`: PHP scripts for Zabbix LLD and other common utilities
-- `zabbix/`: Zabbix templates and configuration files
 - `gdpr/`: GDPR compliance policies and documentation
 - `tools/`: Miscellaneous helper scripts
 

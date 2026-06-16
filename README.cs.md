@@ -13,7 +13,7 @@ Projekt je rozdělen do několika specializovaných podprojektů:
 ## Členské projekty
 
 ### Jádro systému
-- [multiflexi-common](https://github.com/VitexSoftware/multiflexi-common) - Společná dokumentace, sdílené prostředky a Zabbix LLD skripty (tento repozitář)
+- [multiflexi-common](https://github.com/VitexSoftware/multiflexi-common) - Společná dokumentace a sdílené prostředky (tento repozitář)
 - [php-vitexsoftware-multiflexi-core](https://github.com/VitexSoftware/php-vitexsoftware-multiflexi-core) - Centrální knihovna s jádrem obchodní logiky (ORM, Job, RunTemplate, Credential, systém artefaktů)
 - [multiflexi-database](https://github.com/VitexSoftware/multiflexi-database) - Schéma databáze a Phinx migrace (MySQL, PostgreSQL, SQLite)
 - [multiflexi-database-connection](https://github.com/VitexSoftware/multiflexi-database-connection) - Podpora PDO databázového připojení jako typ přihlašovacích údajů
