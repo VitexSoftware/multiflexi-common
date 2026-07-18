@@ -17,6 +17,15 @@ configure)
         addgroup --system multiflexi
     fi
 
+    # Ensure multiflexi system user exists (owns /var/lib/multiflexi and the
+    # web files; several packages' postinst scripts chown to it, so it must
+    # exist before them, not just the group of the same name)
+    if ! getent passwd multiflexi > /dev/null 2>&1; then
+        adduser --system --ingroup multiflexi --home /var/lib/multiflexi \
+            --no-create-home --disabled-login --shell /usr/sbin/nologin \
+            --gecos "MultiFlexi" multiflexi
+    fi
+
     # Add www-data to multiflexi group so the web app can access shared resources
     if ! id -nG www-data 2>/dev/null | grep -qw multiflexi; then
         adduser www-data multiflexi
