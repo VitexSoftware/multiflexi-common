@@ -1,0 +1,26 @@
+Template: multiflexi/encryption_master_key_source
+Type: select
+Choices-C: generate, manual, disable
+Choices: Generate a random key automatically, Enter my own key, Do not encrypt credentials (development only)
+Default: Generate a random key automatically
+Description: Encryption master key source:
+ MultiFlexi encrypts stored credentials (passwords, API keys, tokens)
+ at rest using a master key kept in /etc/multiflexi/multiflexi.env.
+ .
+ Choose whether MultiFlexi should generate a secure random key for you,
+ whether you want to provide your own (for example to match an
+ existing deployment or a key you manage externally), or whether to
+ leave encryption disabled entirely. Disabling it stores credentials
+ as plaintext in the database and is only appropriate for local
+ development, never for a deployment holding real credentials.
+
+Template: multiflexi/encryption_master_key_value
+Type: password
+Description: Encryption master key:
+ Enter the master encryption key MultiFlexi should use to protect
+ stored credentials at rest.
+ .
+ This value is security-sensitive: back it up somewhere safe. If it is
+ ever lost, credentials already encrypted with it become permanently
+ unrecoverable. Leave this blank to have a key generated automatically
+ instead.

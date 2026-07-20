@@ -66,11 +66,40 @@ configure)
     chmod 640 "$ENV_FILE"
     chown root:multiflexi "$ENV_FILE"
     
-    # Generate encryption master key if not already configured
-    if ! grep -q "^ENCRYPTION_MASTER_KEY=" "$ENV_FILE" 2>/dev/null; then
-        MASTER_KEY=$(openssl rand -base64 32)
-        echo "ENCRYPTION_MASTER_KEY=$MASTER_KEY" >> "$ENV_FILE"
-        echo "Generated new encryption master key in $ENV_FILE"
+    # Configure encryption master key if not already decided. The .config
+    # script (run earlier, during package configuration) already asked
+    # whether to generate one, let the admin supply their own, or disable
+    # encryption entirely (development deployments); here we just act on
+    # the answer. Falls back to generating one automatically if debconf
+    # is unavailable (e.g. noninteractive frontend) or the admin left a
+    # manual entry blank, so this never blocks configuration.
+    if ! grep -q "^ENCRYPTION_MASTER_KEY=" "$ENV_FILE" 2>/dev/null \
+        && ! grep -q "^DATA_ENCRYPTION_ENABLED=false" "$ENV_FILE" 2>/dev/null; then
+        db_get multiflexi/encryption_master_key_source || true
+        KEY_SOURCE="${RET:-generate}"
+
+        if [ "$KEY_SOURCE" = "disable" ]; then
+            echo "DATA_ENCRYPTION_ENABLED=false" >> "$ENV_FILE"
+            echo "Credential encryption at rest disabled (development mode) in $ENV_FILE"
+        else
+            MASTER_KEY=""
+
+            if [ "$KEY_SOURCE" = "manual" ]; then
+                db_get multiflexi/encryption_master_key_value || true
+                MASTER_KEY="$RET"
+            fi
+
+            if [ -z "$MASTER_KEY" ]; then
+                MASTER_KEY=$(openssl rand -base64 32)
+            fi
+
+            echo "ENCRYPTION_MASTER_KEY=$MASTER_KEY" >> "$ENV_FILE"
+            echo "Configured encryption master key in $ENV_FILE"
+
+            # Don't keep the secret lingering in the debconf database any
+            # longer than necessary.
+            db_set multiflexi/encryption_master_key_value "" || true
+        fi
     fi
 
     # Handle consent banner configuration from debconf
@@ -94,6 +123,8 @@ configure)
     if [ -x "/usr/bin/update-multiflexi-env" ]; then
         /usr/bin/update-multiflexi-env
     fi
+
+    db_stop
 
     ;;
 
