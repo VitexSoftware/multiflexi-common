@@ -18,7 +18,7 @@ Description: Run various tools on top of not even AbraFlexi and Stormware Pohoda
 
 Package: multiflexi-common
 Multi-Arch: foreign
-Depends: ${misc:Depends}
+Depends: ${misc:Depends},
  locales-all,
  php-vitexsoftware-multiflexi-core,
  adduser (>= 3.11),
