@@ -71,3 +71,8 @@ debian/multiflexi-dev/
 debian/multiflexi-dev.substvars
 debian/multiflexi-doc/
 debian/multiflexi-doc.substvars
+
+# SBOM tooling: regenerable outputs and local tool caches, not source.
+/tools/sbom/.tools/
+/tools/sbom/sbom/
+/tools/sbom/*.csv

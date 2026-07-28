@@ -1,0 +1,57 @@
+# DRAFT ARTIFACT - NOT WIRED INTO ANY REPO.
+#
+# This is a proposal only, produced by the CRA/SBOM compliance audit
+# (2026-07). It is not committed as .github/workflows/sbom.yml in any real
+# repo - that requires separate, explicit per-repo sign-off (CI changes are
+# cross-cutting and were explicitly out of scope for the audit itself).
+#
+# To adopt: copy to .github/workflows/sbom.yml in a target repo, remove this
+# header, and adjust the "Generate SBOM" step for that repo's ecosystem
+# (this example shows the PHP/Composer case, the dominant ecosystem across
+# the MultiFlexi org - swap in the matching CycloneDX generator from
+# sbom-process.rst for npm/Python/Go/Java repos).
+#
+# Suggested first candidates: the 9 repos that already have Dependabot
+# enabled (see _audit/sbom-cra-audit-2026-07.md) - they already have
+# dependency-hygiene buy-in, so adding SBOM generation is a natural next
+# step rather than a new practice:
+#   multiflexi-cli, multiflexi-database, multiflexi-doc-en, multiflexi.eu,
+#   multiflexi-executor, multiflexi-scheduler, multiflexi-server,
+#   multiflexi-web, php-vitexsoftware-multiflexi-core
+
+name: SBOM
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '0 4 * * 1'  # weekly, catches drift from unpinned/transitive updates
+  workflow_dispatch:
+
+jobs:
+  sbom:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          tools: composer
+
+      - name: Install cyclonedx-php-composer
+        run: |
+          composer global config allow-plugins.cyclonedx/cyclonedx-php-composer true
+          composer global require cyclonedx/cyclonedx-php-composer
+
+      - name: Generate SBOM
+        run: |
+          composer CycloneDX:make-sbom --output-format=JSON --output-file=sbom.cdx.json
+
+      - name: Upload SBOM artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom
+          path: sbom.cdx.json
+          retention-days: 90
