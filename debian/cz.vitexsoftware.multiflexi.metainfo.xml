@@ -6,11 +6,17 @@
   <project_license>MIT</project_license>
   <name>MultiFlexi</name>
   <summary>Run tools and apps on top of accounting systems</summary>
+  <summary xml:lang="cs">Spouští nástroje a aplikace nad účetními systémy</summary>
   <description>
     <p>
       Define servers, customers and their companies, then specify which
       services and commands run upon them. MultiFlexi orchestrates tools on top
       of accounting systems such as AbraFlexi and Stormware Pohoda.
+    </p>
+    <p xml:lang="cs">
+      Definujte servery, zákazníky a jejich firmy a poté určete, jaké
+      služby a příkazy se nad nimi mají spouštět. MultiFlexi orchestruje nástroje
+      nad účetními systémy, jako jsou AbraFlexi a Stormware Pohoda.
     </p>
   </description>
   <url type="homepage">https://github.com/VitexSoftware/MultiFlexi</url>
